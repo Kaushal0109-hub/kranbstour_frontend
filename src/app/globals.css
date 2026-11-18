@@ -1,0 +1,411 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Huninn&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * KranbsTour design system — playful, colourful travel.
+ * Royal Blue #142B55 · Saffron #F59A23 · Ivory #F6F0E5 · White + soft pastels (mint, peach, sky, cream)
+ */
+
+@theme inline {
+  --font-display: "Huninn", ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Huninn", ui-rounded, ui-sans-serif, system-ui, sans-serif;
+
+  /* Small text stays readable after the root scale-down below */
+  --text-xs: 0.8rem;
+  --text-sm: 0.92rem;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 22px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Brand tokens */
+  --color-royal: var(--royal);
+  --color-royal-soft: var(--royal-soft);
+  --color-saffron: var(--saffron);
+  --color-saffron-deep: var(--saffron-deep);
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-navy: var(--navy);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+
+  /* Supporting pastels */
+  --color-mint: var(--mint);
+  --color-mint-deep: var(--mint-deep);
+  --color-peach: var(--peach);
+  --color-sky: var(--sky);
+  --color-sky-deep: var(--sky-deep);
+  --color-cream: var(--cream);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --animate-float-slow: float-slow 7s ease-in-out infinite;
+  --animate-float-slower: float-slow 10s ease-in-out infinite;
+  --animate-drift: drift 6s ease-in-out infinite;
+  --animate-dash: dash 30s linear infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-cloud: cloud 38s linear infinite;
+  --animate-cloud-slow: cloud 60s linear infinite;
+  --animate-fly: fly 8s ease-in-out infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-wiggle: wiggle 4s ease-in-out infinite;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-pop: pop 600ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --royal: oklch(0.296 0.082 261.3);
+  --royal-soft: oklch(0.38 0.11 261);
+  --saffron: oklch(0.762 0.16 66.2);
+  --saffron-deep: oklch(0.697 0.156 62.7);
+  --ivory: oklch(0.957 0.016 82.8);
+  --ivory-deep: oklch(0.92 0.025 80);
+  --navy: oklch(0.222 0.039 259.9);
+  --paper: oklch(1 0 0);
+  --ink: oklch(0.24 0.03 262);
+
+  --mint: oklch(0.945 0.045 158);
+  --mint-deep: oklch(0.7 0.13 156);
+  --peach: oklch(0.93 0.055 62);
+  --sky: oklch(0.945 0.03 238);
+  --sky-deep: oklch(0.72 0.09 240);
+  --cream: oklch(0.982 0.014 88);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--foreground);
+  --popover: var(--paper);
+  --popover-foreground: var(--foreground);
+  --primary: var(--royal);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--ivory-deep);
+  --secondary-foreground: var(--royal);
+  --muted: oklch(0.955 0.012 82);
+  --muted-foreground: oklch(0.48 0.03 262);
+  --accent: var(--saffron);
+  --accent-foreground: var(--navy);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.91 0.018 80);
+  --input: oklch(0.91 0.018 80);
+  --ring: var(--saffron);
+
+  --chart-1: var(--saffron);
+  --chart-2: var(--royal);
+  --chart-3: var(--royal-soft);
+  --chart-4: var(--saffron-deep);
+  --chart-5: var(--navy);
+  --sidebar: var(--ivory);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--royal);
+  --sidebar-primary-foreground: var(--ivory);
+  --sidebar-accent: var(--ivory-deep);
+  --sidebar-accent-foreground: var(--royal);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--saffron);
+
+  /* Gradients & depth */
+  --gradient-hero:
+    radial-gradient(60% 75% at 12% 40%, color-mix(in oklab, var(--mint) 100%, transparent) 0%, transparent 70%),
+    radial-gradient(55% 70% at 85% 20%, color-mix(in oklab, var(--peach) 100%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 55% at 55% 95%, color-mix(in oklab, var(--sky) 90%, transparent) 0%, transparent 70%),
+    linear-gradient(180deg, var(--cream), var(--paper));
+  --gradient-pastel: linear-gradient(135deg, var(--mint) 0%, var(--cream) 45%, var(--peach) 100%);
+  --gradient-sky: linear-gradient(160deg, var(--sky) 0%, var(--cream) 55%, var(--mint) 100%);
+  --gradient-peach: linear-gradient(160deg, var(--peach) 0%, var(--cream) 60%, var(--paper) 100%);
+  --overlay-card: linear-gradient(
+    180deg,
+    transparent 40%,
+    color-mix(in oklab, var(--navy) 55%, transparent) 70%,
+    color-mix(in oklab, var(--navy) 90%, transparent) 100%
+  );
+  --shadow-soft: 0 18px 40px -22px color-mix(in oklab, var(--navy) 40%, transparent);
+  --shadow-lift: 0 30px 60px -28px color-mix(in oklab, var(--navy) 50%, transparent);
+  --shadow-photo: 0 40px 70px -30px color-mix(in oklab, var(--navy) 55%, transparent);
+  --shadow-saffron: 0 16px 30px -12px color-mix(in oklab, var(--saffron) 70%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  /*
+   * Root scale: every rem-based size (type, spacing, card dimensions) is
+   * proportionally ~6% smaller on phones and ~12.5% smaller from tablet up.
+   */
+  html {
+    font-size: 93.75%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  @media (min-width: 48rem) {
+    html {
+      font-size: 87.5%;
+    }
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-royal);
+    letter-spacing: -0.015em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Small letter-spaced label */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Handwritten orange accent label */
+@utility hand {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+/* Logo sits on a light plate wherever the background is dark */
+@utility logo-plate {
+  background-color: var(--paper);
+  border-radius: 9999px;
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+@utility shadow-photo {
+  box-shadow: var(--shadow-photo);
+}
+@utility shadow-saffron {
+  box-shadow: var(--shadow-saffron);
+}
+
+@utility bg-hero-gradient {
+  background-image: var(--gradient-hero);
+}
+@utility bg-pastel-gradient {
+  background-image: var(--gradient-pastel);
+}
+@utility bg-sky-gradient {
+  background-image: var(--gradient-sky);
+}
+@utility bg-peach-gradient {
+  background-image: var(--gradient-peach);
+}
+@utility bg-card-overlay {
+  background-image: var(--overlay-card);
+}
+
+/* Arch-topped photo frame (tall rounded travel card) */
+@utility arch {
+  border-radius: 999px 999px 2rem 2rem;
+}
+
+/* Dotted texture */
+@utility bg-dots {
+  background-image: radial-gradient(
+    color-mix(in oklab, currentColor 22%, transparent) 1px,
+    transparent 1.3px
+  );
+  background-size: 20px 20px;
+}
+
+/* Diagonal shine sweep on hover */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      color-mix(in oklab, var(--paper) 45%, transparent) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 700ms ease;
+  }
+  &:hover::after {
+    transform: translateX(120%);
+  }
+}
+
+/* Hide scrollbar on intentional horizontal scrollers */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Section entry reveal (toggled by <Reveal>) */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 800ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-8deg);
+  }
+  50% {
+    transform: translate(8px, -10px) rotate(-2deg);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes cloud {
+  from {
+    transform: translateX(-30vw);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes fly {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-4deg);
+  }
+  50% {
+    transform: translate(-18px, -22px) rotate(-1deg);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
