@@ -10,6 +10,9 @@ import { ContactLocationSection } from "@/components/site/ContactLocationSection
 import { ContactFaqSection } from "@/components/site/ContactFaqSection";
 import { ContactFinalCta } from "@/components/site/ContactFinalCta";
 
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Contact Us — KranbsTour | Plan Your Dream Tour to Agra, Delhi & Jaipur",
   description:
@@ -41,7 +44,7 @@ export default function ContactPage() {
 
       <main className="flex-1">
         {/* Breadcrumb Navigation */}
-        <Breadcrumb items={breadcrumbs} />
+        <Breadcrumb items={breadcrumbs} showRoot={false} />
 
         {/* 1. Travel-Themed Contact Hero */}
         <ContactHero />
@@ -58,17 +61,17 @@ export default function ContactPage() {
         {/* 5. Destination Help Section */}
         <ContactDestinationHelp />
 
-        {/* 6. Office Location & Service Area */}
+        {/* 6. Office / Operations Location Section */}
         <ContactLocationSection />
 
-        {/* 7. Frequently Asked Questions */}
+        {/* 7. Contact FAQs Accordion */}
         <ContactFaqSection />
 
-        {/* 8. Final Call to Action */}
+        {/* 8. Final Encouraging Call to Action */}
         <ContactFinalCta />
       </main>
 
-      {/* Global KranbsTour Footer */}
+      {/* Global Footer */}
       <SiteFooter />
     </div>
   );

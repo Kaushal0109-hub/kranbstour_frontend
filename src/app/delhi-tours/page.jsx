@@ -1,5 +1,8 @@
 import { DestinationPageTemplate } from "@/components/site/DestinationPageTemplate";
 
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Delhi Tours & Sightseeing Packages | KranbsTour",
   description:

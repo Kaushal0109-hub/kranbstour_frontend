@@ -46,14 +46,14 @@ export const destinationGuides = {
           tip: "Often wonderfully uncrowded, allowing intimate close-up photography of its intricate pietra dura floral inlays and carved marble jali screens.",
           image: images.tajArchway,
         },
-        {
-          name: "Mehtab Bagh (Moonlight Garden)",
-          tagline: "Sunset Reflection Sanctuary Across the Yamuna",
-          description:
-            "A serene 25-acre Mughal Charbagh garden situated directly across the river from the Taj Mahal. Built by Emperor Babur and aligned precisely with the Taj, it provides the quintessential panoramic vantage point as sunset turns the marble into shades of ochre and lilac.",
-          tip: "Visit between 4:30 PM and 6:00 PM. It is ideal for photographers using telephoto lenses without having to navigate strict security checks inside the main monument.",
-          image: images.tajGoldenHour,
-        },
+        // {
+        //   name: "Mehtab Bagh (Moonlight Garden)",
+        //   tagline: "Sunset Reflection Sanctuary Across the Yamuna",
+        //   description:
+        //     "A serene 25-acre Mughal Charbagh garden situated directly across the river from the Taj Mahal. Built by Emperor Babur and aligned precisely with the Taj, it provides the quintessential panoramic vantage point as sunset turns the marble into shades of ochre and lilac.",
+        //   tip: "Visit between 4:30 PM and 6:00 PM. It is ideal for photographers using telephoto lenses without having to navigate strict security checks inside the main monument.",
+        //   image: images.tajGoldenHour,
+        // },
       ],
       bestTimeToVisit: {
         season: "October to March (Autumn, Winter & Early Spring)",
@@ -155,14 +155,14 @@ export const destinationGuides = {
           tip: "Walk through the ornate carved arches of the Quwwat-ul-Islam mosque for dramatic angle shots looking up toward the multi-tiered carved minaret.",
           image: images.qutubMinar,
         },
-        {
-          name: "India Gate & Kartavya Path",
-          tagline: "Imperial Grandeur in the Heart of New Delhi",
-          description:
-            "Designed by British architect Sir Edwin Lutyens and completed in 1931, this 42-meter triumphal arch commemorates 84,000 soldiers of the British Indian Army who lost their lives in World War I. Today, it anchors the majestic ceremonial avenue leading toward Rashtrapati Bhavan (Presidential Palace).",
-          tip: "Visit in the evening when the monument and fountains are illuminated in the tricolor of the Indian flag and families gather on the lawns.",
-          image: images.indiaGate,
-        },
+        // {
+        //   name: "India Gate & Kartavya Path",
+        //   tagline: "Imperial Grandeur in the Heart of New Delhi",
+        //   description:
+        //     "Designed by British architect Sir Edwin Lutyens and completed in 1931, this 42-meter triumphal arch commemorates 84,000 soldiers of the British Indian Army who lost their lives in World War I. Today, it anchors the majestic ceremonial avenue leading toward Rashtrapati Bhavan (Presidential Palace).",
+        //   tip: "Visit in the evening when the monument and fountains are illuminated in the tricolor of the Indian flag and families gather on the lawns.",
+        //   image: images.indiaGate,
+        // },
       ],
       bestTimeToVisit: {
         season: "October to March",
@@ -263,14 +263,14 @@ export const destinationGuides = {
           tip: "Upgrade to the Chandra Mahal private royal suite tour for exclusive access to the Maharaja's private living quarters and panoramic terraces.",
           image: images.cityPalace,
         },
-        {
-          name: "Jal Mahal (Water Palace)",
-          tagline: "18th-Century Pleasure Pavilion in Man Sagar Lake",
-          description:
-            "A picturesque red sandstone palace that appears to float magically on the waters of Man Sagar Lake. While the interior is preserved and inaccessible to the general public, the lakeside promenade offers spectacular photography with the Aravali hills behind.",
-          tip: "Stop along the lakeside promenade on your way back from Amber Fort; late afternoon provides mirror-like reflections on the lake surface.",
-          image: images.jalMahal,
-        },
+        // {
+        //   name: "Jal Mahal (Water Palace)",
+        //   tagline: "18th-Century Pleasure Pavilion in Man Sagar Lake",
+        //   description:
+        //     "A picturesque red sandstone palace that appears to float magically on the waters of Man Sagar Lake. While the interior is preserved and inaccessible to the general public, the lakeside promenade offers spectacular photography with the Aravali hills behind.",
+        //   tip: "Stop along the lakeside promenade on your way back from Amber Fort; late afternoon provides mirror-like reflections on the lake surface.",
+        //   image: images.jalMahal,
+        // },
       ],
       bestTimeToVisit: {
         season: "October to March",

@@ -9,6 +9,9 @@ import { BlogNewsletter } from "@/components/site/BlogNewsletter";
 import { BlogFinalCta } from "@/components/site/BlogFinalCta";
 import { getAllArticles, getFeaturedArticle } from "@/data/blog";
 
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Travel Stories, Guides & Insider Tips | KranbsTour India Blog",
   description:
@@ -58,7 +61,7 @@ export default function BlogListingPage() {
         <BlogInspirationBanner />
 
         {/* 5. Email Travel Dispatch Newsletter */}
-        <BlogNewsletter />
+        {/* <BlogNewsletter /> */}
 
         {/* 6. Final Travel Experience CTA */}
         <BlogFinalCta />

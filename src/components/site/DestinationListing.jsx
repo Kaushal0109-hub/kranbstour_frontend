@@ -95,9 +95,9 @@ export function DestinationListing({
         </div>
 
         {/* Filter and Sort Control Bar */}
-        <div className="mt-10 rounded-3xl border border-royal/10 bg-ivory/60 p-4 shadow-soft sm:p-6">
+        {/* <div className="mt-10 rounded-3xl border border-royal/10 bg-ivory/60 p-4 shadow-soft sm:p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            {/* Left: Duration Filters */}
+          
             <div className="flex flex-wrap items-center gap-2">
               <span className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-royal/60 mr-1">
                 <Filter className="h-3.5 w-3.5" /> Duration:
@@ -126,7 +126,7 @@ export function DestinationListing({
               ))}
             </div>
 
-            {/* Right: Type Filter & Sort Dropdown */}
+            
             <div className="flex flex-wrap items-center gap-3">
               {availableTypes.length > 1 && (
                 <div className="flex items-center gap-1.5">
@@ -178,7 +178,7 @@ export function DestinationListing({
             </div>
           </div>
 
-          {/* Results count banner */}
+          
           <div className="mt-3 flex items-center justify-between text-xs text-foreground/60 border-t border-royal/5 pt-3">
             <span>
               Showing <strong className="text-royal">{displayedTours.length}</strong> of{" "}
@@ -188,7 +188,7 @@ export function DestinationListing({
               <span className="text-saffron-deep font-medium">Filtered results</span>
             )}
           </div>
-        </div>
+        </div> */}
 
         {/* 3-Column Tour Card Grid */}
         {filteredTours.length > 0 ? (

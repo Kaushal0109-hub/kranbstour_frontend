@@ -4,7 +4,8 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { BlogDetailHeader } from "@/components/site/BlogDetailHeader";
 import { BlogCoverImage } from "@/components/site/BlogCoverImage";
-import { BlogTableOfContents } from "@/components/site/BlogTableOfContents";
+import { BlogAuthorShareBar } from "@/components/site/BlogAuthorShareBar";
+import { BlogTrendingSidebar } from "@/components/site/BlogTrendingSidebar";
 import { BlogArticleBody } from "@/components/site/BlogArticleBody";
 import { BlogDestinationBox } from "@/components/site/BlogDestinationBox";
 import { BlogAuthorBox } from "@/components/site/BlogAuthorBox";
@@ -17,8 +18,12 @@ import { BlogFinalCta } from "@/components/site/BlogFinalCta";
 import {
   getAllArticleSlugs,
   getArticleBySlug,
+  getTrendingArticles,
   authors,
 } from "@/data/blog";
+
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const slugs = getAllArticleSlugs();
@@ -84,6 +89,8 @@ export default async function BlogDetailPage({ params }) {
     avatar: "/avatars/avatar-1.jpg",
     bio: "Official editorial desk of KranbsTour, sharing verified monument advice and itinerary guides.",
   };
+
+  const trendingArticles = getTrendingArticles(article.slug, 5);
 
   const breadcrumbs = [
     {
@@ -178,63 +185,70 @@ export default async function BlogDetailPage({ params }) {
           showRoot={true}
         />
 
-        {/* 1. Article Header with title, badges, author row, and social share buttons */}
-        <BlogDetailHeader article={article} author={author} />
+        {/* 1. Article Header: Eyebrow Category, Title & Subtitle */}
+        <BlogDetailHeader article={article} />
 
-        {/* 2. Featured Cover Image */}
-        <div className="pt-8">
-          <BlogCoverImage
-            src={article.coverImage}
-            alt={article.coverImageAlt}
-            caption={article.coverImageAlt}
-            destination={article.destination}
-          />
-        </div>
+        {/* 2. Responsive 16:9 Cover Image */}
+        <BlogCoverImage
+          src={article.coverImage}
+          alt={article.coverImageAlt}
+          caption={article.coverImageAlt}
+          destination={article.destination}
+        />
 
-        {/* 3. Main Reading Grid: Left Article Content (8 cols) + Right Sticky TOC (4 cols) */}
-        <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-10 pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_360px] gap-12 items-start">
-            {/* Primary Article Content Column */}
-            <div className="min-w-0">
-              {/* Semantic Body with Tips & Blockquotes */}
-              <BlogArticleBody sections={article.content} />
+        {/* 3. Rajesh Sharma Author Byline & Social Share Controls (Directly below Image) */}
+        <BlogAuthorShareBar article={article} author={author} />
 
-              {/* Destination Quick Fact Box */}
+        {/* 4. Two-Column Layout: Left (70% Article Column) + Right (30% Sticky Trending Stories) */}
+        <div className="mx-auto max-w-[76rem] px-4 sm:px-6 lg:px-8 pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start">
+            {/* Left Column: Main Article Body & Editorial Flow */}
+            <div className="min-w-0 max-w-[800px]">
+              {/* Article Content: Headings (26-28px), Body (16-17px), Inline Photos, Tips, Quotes */}
+              <BlogArticleBody
+                sections={article.content}
+                destination={article.destination}
+              />
+
+              {/* Destination Essentials Snapshot */}
               <BlogDestinationBox
                 destinationInfo={article.destinationInfo}
                 destination={article.destination}
                 categorySlug={article.categorySlug}
               />
 
-              {/* Author Bio Box */}
+              {/* Compact Author Byline */}
               <BlogAuthorBox author={author} />
 
-              {/* Article-Specific FAQs Accordion */}
+              {/* Compact FAQs */}
               {article.faqs && article.faqs.length > 0 && (
                 <BlogFaqAccordion faqs={article.faqs} />
               )}
 
-              {/* Related Tour Packages */}
+              {/* Related Tour Packages (2-3 compact cards) */}
               <BlogRelatedTours
                 relatedTourSlugs={article.relatedTourSlugs}
                 destination={article.destination}
               />
             </div>
 
-            {/* Sidebar Column: Sticky Table of Contents */}
-            <aside className="w-full lg:order-last">
-              <BlogTableOfContents sections={article.content} />
-            </aside>
+            {/* Right Column: Sticky Trending Stories Sidebar (30% width) */}
+            <div className="w-full">
+              <BlogTrendingSidebar
+                trendingArticles={trendingArticles}
+                sections={article.content}
+              />
+            </div>
           </div>
         </div>
 
-        {/* 4. More Stories You May Enjoy (3 related articles) */}
+        {/* 5. More Stories You May Enjoy (3 compact cards) */}
         <BlogRelatedArticles currentArticle={article} />
 
-        {/* 5. Newsletter Subscription Dispatch */}
+        {/* 6. Newsletter Subscription Dispatch */}
         <BlogNewsletter />
 
-        {/* 6. Final Travel CTA */}
+        {/* 7. Final Travel Experience CTA */}
         <BlogFinalCta />
       </main>
 

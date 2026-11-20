@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { CheckCircle2, Feather } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export function BlogAuthorBox({ author }) {
   if (!author) return null;
 
   return (
-    <div className="my-10 rounded-3xl border border-royal/10 bg-ivory/50 p-6 sm:p-8 shadow-soft">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-        {/* Avatar */}
-        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-3 border-saffron shadow-card bg-paper">
+    <div className="my-8 py-5 border-y border-royal/10">
+      <div className="flex items-start sm:items-center gap-4">
+        {/* Author Avatar */}
+        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-saffron bg-ivory">
           <Image
             src={author.avatar || "/avatars/avatar-1.jpg"}
             alt={author.name}
@@ -17,27 +17,27 @@ export function BlogAuthorBox({ author }) {
           />
         </div>
 
-        {/* Info */}
-        <div className="space-y-2 flex-1">
+        {/* Byline & Bio */}
+        <div className="space-y-1 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-saffron-deep">
-              <Feather className="h-3 w-3" /> Written by
+            <span className="text-[11px] uppercase tracking-wider text-foreground/50 font-medium">
+              Written by
             </span>
             <span className="text-royal/30">•</span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-green-100 text-green-800 px-2 py-0.5 text-[11px] font-semibold">
-              <CheckCircle2 className="h-3 w-3" /> Verified KranbsTour Guide
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-green-800">
+              <CheckCircle2 className="h-3 w-3 text-green-700" /> Verified Local Guide
             </span>
           </div>
 
-          <h3 className="font-display text-xl font-bold text-royal">
+          <h3 className="font-display text-base sm:text-lg font-bold text-royal">
             {author.name}
           </h3>
 
-          <p className="text-xs font-semibold text-royal/70">
+          <p className="text-xs text-saffron-deep font-semibold">
             {author.role}
           </p>
 
-          <p className="text-sm text-foreground/80 leading-relaxed font-sans pt-1">
+          <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans pt-0.5">
             {author.bio}
           </p>
         </div>

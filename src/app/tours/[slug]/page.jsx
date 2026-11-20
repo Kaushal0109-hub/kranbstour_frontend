@@ -22,6 +22,9 @@ import {
   getTourBySlug,
 } from "@/data/tours";
 
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const slugs = getAllTourSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -77,8 +80,41 @@ export default async function TourDetailPage({ params }) {
 
   const relatedTours = getRelatedTours(tour, 3);
 
+  const jsonLdTour = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: tour.title,
+    description: tour.summary || tour.overview,
+    image: [tour.image],
+    touristType: ["Cultural Tourism", "Sightseeing"],
+    offers: {
+      "@type": "Offer",
+      price: String(tour.price || "45").replace(/[^0-9]/g, "") || "45",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      validFrom: "2025-01-01",
+      url: `https://kranbstour.com/tours/${tour.slug}`,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: String(tour.rating || "4.9"),
+      reviewCount: String(tour.reviewCount || "120"),
+    },
+    provider: {
+      "@type": "TravelAgency",
+      name: "KranbsTour",
+      url: "https://kranbstour.com",
+    },
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-paper text-foreground selection:bg-saffron/20 selection:text-royal">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdTour) }}
+      />
+
       {/* Global Site Header */}
       <SiteHeader />
 

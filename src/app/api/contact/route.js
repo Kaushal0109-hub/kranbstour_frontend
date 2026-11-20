@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+// Dynamic API Route: Execute fresh on every contact form submission
+export const dynamic = "force-dynamic";
+
 export async function POST(request) {
   try {
     const body = await request.json();

@@ -1,13 +1,16 @@
 import { DestinationPageTemplate } from "@/components/site/DestinationPageTemplate";
 
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
+
 export const metadata = {
-  title: "Golden Triangle Tour Packages – Delhi, Agra & Jaipur | KranbsTour",
+  title: "Golden Triangle Tour Packages (Delhi, Agra, Jaipur) | KranbsTour",
   description:
-    "Discover India's iconic Golden Triangle circuit connecting Delhi, Agra, and Jaipur. Tailor-made private journeys ranging from 3 to 6 days with luxury transport and licensed guides.",
+    "Book complete multi-day Golden Triangle tours combining Delhi, Agra, and Jaipur. 3-day, 4-day, and 5-day itineraries with private chauffeurs and handpicked luxury hotels.",
   openGraph: {
-    title: "Golden Triangle Tour Packages – Delhi, Agra & Jaipur | KranbsTour",
+    title: "Golden Triangle Tour Packages (Delhi, Agra, Jaipur) | KranbsTour",
     description:
-      "Experience Delhi's heritage, the Taj Mahal in Agra, and Jaipur's royal palaces in one seamless private journey across northern India.",
+      "Experience India's most celebrated heritage circuit with KranbsTour's bespoke Golden Triangle private itineraries.",
     url: "https://kranbstour.com/golden-triangle-tours",
     type: "website",
   },

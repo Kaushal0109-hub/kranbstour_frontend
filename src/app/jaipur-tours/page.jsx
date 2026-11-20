@@ -1,13 +1,16 @@
 import { DestinationPageTemplate } from "@/components/site/DestinationPageTemplate";
 
+// ISR: Cache and revalidate every 1 hour (Option B)
+export const revalidate = 3600;
+
 export const metadata = {
-  title: "Jaipur Tours & Royal Rajasthan Sightseeing | KranbsTour",
+  title: "Jaipur Tours & Pink City Sightseeing Packages | KranbsTour",
   description:
-    "Experience the royal charm of Jaipur with private guided tours of Amber Fort, Hawa Mahal, City Palace, Jal Mahal, and colorful heritage textile bazaars.",
+    "Immerse yourself in Rajasthan's royal heritage with guided tours to Amber Fort, City Palace, Hawa Mahal, and traditional bazaar walking trails in Jaipur.",
   openGraph: {
-    title: "Jaipur Tours & Royal Rajasthan Sightseeing | KranbsTour",
+    title: "Jaipur Tours & Pink City Sightseeing Packages | KranbsTour",
     description:
-      "Explore the Pink City's hilltop fortresses, Sheesh Mahal, royal courtyards, and artisanal guild quarters with KranbsTour's personalized private packages.",
+      "Experience the Pink City with private guided day tours, luxury AC transfers, and insider access to royal Rajasthani monuments.",
     url: "https://kranbstour.com/jaipur-tours",
     type: "website",
   },

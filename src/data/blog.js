@@ -940,6 +940,12 @@ export const getRelatedArticles = (currentArticle, limit = 3) => {
   return [...related, ...others].slice(0, limit);
 };
 
+export const getTrendingArticles = (currentSlug, limit = 5) => {
+  return articles
+    .filter((a) => a.slug !== currentSlug)
+    .slice(0, limit);
+};
+
 export const getArticlesByCategory = (categorySlug) => {
   if (!categorySlug || categorySlug === "all") {
     return getAllArticles();

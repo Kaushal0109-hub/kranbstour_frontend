@@ -100,7 +100,7 @@ function CityCarousel({ section, onView }) {
           </h2>
           <p className="mt-5 leading-relaxed text-ink/70">{section.text}</p>
 
-          <div className="mt-7 flex items-center gap-3">
+          <div className="mt-7 md:hidden flex items-center gap-3">
             <button
               type="button"
               aria-label={`Previous ${section.city} tour`}
@@ -119,12 +119,12 @@ function CityCarousel({ section, onView }) {
             >
               <ArrowRight className="h-5 w-5" />
             </button>
-            <span className="ml-1 font-display text-sm font-medium text-royal/60">
+            {/* <span className="ml-1 font-display text-sm font-medium text-royal/60">
               {tours.length} journeys
-            </span>
+            </span> */}
           </div>
 
-          <div className="mt-3">
+          <div className="mt-3 md:hidden">
             <a
               href={`/${section.category}-tours`}
               className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-saffron-deep transition-all hover:gap-2.5 hover:text-royal"
@@ -149,6 +149,29 @@ function CityCarousel({ section, onView }) {
         </Reveal>
 
         <Reveal delay={120} className="min-w-0">
+          <div className="mt-7 hidden md:flex  mb-5 justify-end items-center gap-3">
+            <button
+              type="button"
+              aria-label={`Previous ${section.city} tour`}
+              onClick={() => api?.scrollPrev()}
+              disabled={!canPrev}
+              className="grid h-12 w-12 place-items-center rounded-full border-2 border-royal text-royal transition-all hover:bg-royal hover:text-ivory disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-royal"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label={`Next ${section.city} tour`}
+              onClick={() => api?.scrollNext()}
+              disabled={!canNext}
+              className="grid h-12 w-12 place-items-center rounded-full bg-saffron text-paper shadow-saffron transition-all hover:bg-saffron-deep disabled:opacity-30"
+            >
+              <ArrowRight className="h-5 w-5" />
+            </button>
+            {/* <span className="ml-1 font-display text-sm font-medium text-royal/60">
+              {tours.length} journeys
+            </span> */}
+          </div>
           <div ref={ref} className="-m-4 overflow-hidden p-4">
             <div className="flex gap-5">
               {tours.map((tour) => (
@@ -185,6 +208,15 @@ function CityCarousel({ section, onView }) {
               </div>
             </div>
           </div>
+           <div className="mt-10 justify-end hidden md:flex">
+            <a
+              href={`/${section.category}-tours`}
+              className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-saffron-deep transition-all hover:gap-2.5 hover:text-royal"
+            >
+              View all {section.city} packages →
+            </a>
+          </div>
+
         </Reveal>
       </div>
     </section>

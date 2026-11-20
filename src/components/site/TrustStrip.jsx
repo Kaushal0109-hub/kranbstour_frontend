@@ -32,7 +32,7 @@ const indicators = [
 /** "Travel With Confidence" — neutral trust indicators (no invented partners or stats). */
 export function TrustStrip() {
   return (
-    <section aria-labelledby="trust-heading" className="relative bg-paper py-16 sm:py-20">
+    <section aria-labelledby="trust-heading" className="relative bg-paper py-16 sm:py-20 hidden md:block">
       <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-10">
         <Reveal className="grid items-center gap-10 lg:grid-cols-[0.9fr_2fr]">
           <div>

@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { Compass, Calendar, Clock, Landmark, ArrowRight } from "lucide-react";
+import { Compass, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function BlogDestinationBox({ destinationInfo, destination, categorySlug }) {
   if (!destinationInfo && !destination) return null;
 
-  // Determine destination tour listing URL
   const getListingUrl = (dest) => {
     const d = (dest || "").toLowerCase();
     if (d.includes("agra")) return "/agra-tours";
@@ -19,67 +18,66 @@ export function BlogDestinationBox({ destinationInfo, destination, categorySlug 
   const destName = destinationInfo?.destination || destination || "India";
 
   return (
-    <div className="my-10 overflow-hidden rounded-3xl border-2 border-royal/15 bg-paper shadow-card">
-      <div className="bg-royal px-6 py-4 text-paper flex items-center justify-between">
-        <div className="flex items-center gap-2 font-display text-sm sm:text-base font-bold">
-          <Compass className="h-4 w-4 text-saffron" />
-          <span>Quick Destination Facts &amp; Trip Planning</span>
-        </div>
-        <span className="rounded-full bg-saffron/20 px-2.5 py-0.5 text-xs font-semibold text-saffron">
-          {destName}
+    <div className="my-8 rounded-xl border border-royal/10 bg-[#FAF7EE] p-5 sm:p-6 space-y-4">
+      {/* Header */}
+      <div className="flex items-center gap-2 pb-3 border-b border-royal/10">
+        <Compass className="h-4 w-4 text-saffron" />
+        <span className="text-xs font-bold uppercase tracking-wider text-royal font-display">
+          DESTINATION ESSENTIALS • {destName.toUpperCase()}
         </span>
       </div>
 
-      <div className="p-6 sm:p-8 space-y-6">
-        <div className="grid gap-4 sm:grid-cols-3">
-          {destinationInfo?.bestTime && (
-            <div className="rounded-2xl border border-royal/10 bg-ivory/60 p-4">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-deep">
-                <Calendar className="h-3.5 w-3.5" /> Best Season
-              </div>
-              <p className="mt-1 text-sm font-semibold text-royal">
-                {destinationInfo.bestTime}
-              </p>
-            </div>
-          )}
+      {/* 3 Compact Columns */}
+      <div className="grid gap-4 sm:grid-cols-3">
+        {destinationInfo?.bestTime && (
+          <div className="space-y-0.5">
+            <span className="text-[11px] uppercase tracking-wider text-foreground/50 font-medium block">
+              Best Time to Visit
+            </span>
+            <p className="font-display font-bold text-royal text-sm sm:text-base">
+              {destinationInfo.bestTime}
+            </p>
+          </div>
+        )}
 
-          {destinationInfo?.suggestedDuration && (
-            <div className="rounded-2xl border border-royal/10 bg-ivory/60 p-4">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-deep">
-                <Clock className="h-3.5 w-3.5" /> Ideal Duration
-              </div>
-              <p className="mt-1 text-sm font-semibold text-royal">
-                {destinationInfo.suggestedDuration}
-              </p>
-            </div>
-          )}
+        {destinationInfo?.suggestedDuration && (
+          <div className="space-y-0.5">
+            <span className="text-[11px] uppercase tracking-wider text-foreground/50 font-medium block">
+              Ideal Duration
+            </span>
+            <p className="font-display font-bold text-royal text-sm sm:text-base">
+              {destinationInfo.suggestedDuration}
+            </p>
+          </div>
+        )}
 
-          {destinationInfo?.mustSeeAttractions && (
-            <div className="rounded-2xl border border-royal/10 bg-ivory/60 p-4 sm:col-span-1">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-deep">
-                <Landmark className="h-3.5 w-3.5" /> Key Highlights
-              </div>
-              <p className="mt-1 text-xs sm:text-sm font-semibold text-royal">
-                {destinationInfo.mustSeeAttractions}
-              </p>
-            </div>
-          )}
-        </div>
+        {destinationInfo?.mustSeeAttractions && (
+          <div className="space-y-0.5">
+            <span className="text-[11px] uppercase tracking-wider text-foreground/50 font-medium block">
+              Key Highlights
+            </span>
+            <p className="font-display font-bold text-royal text-sm sm:text-base">
+              {destinationInfo.mustSeeAttractions}
+            </p>
+          </div>
+        )}
+      </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-royal/10">
-          <p className="text-xs sm:text-sm text-foreground/75 text-center sm:text-left">
-            Ready to plan your trip? Browse our hand-crafted private day trips and multi-day packages.
-          </p>
-          <Button
-            asChild
-            className="w-full sm:w-auto shrink-0 bg-saffron hover:bg-saffron-deep text-paper font-display text-sm font-bold shadow-saffron"
-          >
-            <Link href={listingUrl}>
-              <span>Explore {destination || "Destination"} Tours</span>
-              <ArrowRight className="ml-1.5 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
+      {/* Action Line */}
+      <div className="pt-3 border-t border-royal/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p className="text-xs text-foreground/70 font-sans">
+          Planning your trip? Browse our handpicked private tours.
+        </p>
+        <Button
+          asChild
+          size="sm"
+          className="rounded-full bg-royal hover:bg-saffron text-paper font-display text-xs font-bold px-4 py-1.5 h-8 transition-colors shrink-0"
+        >
+          <Link href={listingUrl}>
+            <span>View {destination || "Destination"} Tours</span>
+            <ArrowRight className="ml-1 h-3 w-3" />
+          </Link>
+        </Button>
       </div>
     </div>
   );

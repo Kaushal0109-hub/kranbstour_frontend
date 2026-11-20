@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { HelpCircle, ChevronDown } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 
 export function BlogFaqAccordion({ faqs = [] }) {
-  const [openIndex, setOpenIndex] = useState(0); // open first FAQ by default
+  const [openIndex, setOpenIndex] = useState(0);
 
   if (!faqs || faqs.length === 0) return null;
 
@@ -13,38 +13,34 @@ export function BlogFaqAccordion({ faqs = [] }) {
   };
 
   return (
-    <section className="my-12 rounded-3xl border border-royal/10 bg-paper p-6 sm:p-8 shadow-card">
-      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-deep mb-2">
-        <HelpCircle className="h-4 w-4" /> Frequently Asked Questions
+    <section className="my-10 pt-6 border-t border-royal/10">
+      <div className="space-y-1 mb-5">
+        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-saffron-deep font-display">
+          <HelpCircle className="h-3.5 w-3.5" />
+          <span>Practical Advice</span>
+        </div>
+        <h3 className="font-display text-2xl font-bold text-royal">
+          Frequently Asked Questions
+        </h3>
       </div>
-      <h3 className="font-display text-2xl font-bold text-royal mb-6">
-        Essential Questions Answered
-      </h3>
 
-      <div className="space-y-3">
+      <div className="divide-y divide-royal/10 border-y border-royal/10">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
-            <div
-              key={idx}
-              className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
-                isOpen
-                  ? "border-saffron/40 bg-ivory/50 shadow-soft"
-                  : "border-royal/10 bg-paper hover:border-royal/20"
-              }`}
-            >
+            <div key={idx} className="py-1">
               <button
                 type="button"
                 onClick={() => toggle(idx)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between p-4 sm:p-5 text-left transition-colors"
+                className="flex w-full items-center justify-between py-3.5 text-left transition-colors group"
               >
-                <span className="font-display text-base font-bold text-royal pr-4">
+                <span className="font-display text-base sm:text-lg font-bold text-royal group-hover:text-saffron-deep transition-colors pr-4">
                   {faq.question}
                 </span>
                 <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ${
-                    isOpen ? "bg-saffron text-paper rotate-180" : "bg-royal/5 text-royal"
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ${
+                    isOpen ? "bg-saffron text-paper rotate-180" : "text-royal/60 group-hover:text-royal"
                   }`}
                 >
                   <ChevronDown className="h-4 w-4" />
@@ -52,7 +48,7 @@ export function BlogFaqAccordion({ faqs = [] }) {
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-5 pt-0 sm:px-5 sm:pb-6 text-sm sm:text-base leading-relaxed text-foreground/80 font-sans border-t border-royal/5 mt-1 pt-3">
+                <div className="pb-4 text-sm sm:text-base leading-relaxed text-foreground/80 font-sans">
                   {faq.answer}
                 </div>
               )}

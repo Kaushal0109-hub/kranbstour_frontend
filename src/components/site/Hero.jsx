@@ -143,7 +143,7 @@ export function Hero() {
             royal charm of Jaipur with unforgettable journeys by KranbsTour.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-5 sm:gap-7">
+          <div className="mt-9 flex flex-wrap items-center gap-5 sm:gap-7 hidden md:block">
             <Link
               href="#destinations"
               className="btn-shine group inline-flex h-16 items-center gap-4 rounded-full bg-saffron py-2 pr-2 pl-8 font-display text-lg font-semibold text-paper shadow-saffron transition-all duration-300 hover:-translate-y-0.5 hover:bg-saffron-deep"

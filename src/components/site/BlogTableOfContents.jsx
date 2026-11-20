@@ -10,7 +10,6 @@ export function BlogTableOfContents({ sections = [] }) {
   useEffect(() => {
     if (!sections || sections.length === 0) return;
 
-    // Intersection observer for sections
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -20,7 +19,7 @@ export function BlogTableOfContents({ sections = [] }) {
         });
       },
       {
-        rootMargin: "-100px 0px -60% 0px",
+        rootMargin: "-120px 0px -60% 0px",
         threshold: 0.1,
       }
     );
@@ -39,7 +38,7 @@ export function BlogTableOfContents({ sections = [] }) {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -90; // offset for sticky header
+      const yOffset = -100; // offset for sticky header
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
       setActiveId(id);
@@ -49,12 +48,12 @@ export function BlogTableOfContents({ sections = [] }) {
 
   return (
     <div className="w-full">
-      {/* Mobile Collapsible Drawer */}
-      <div className="lg:hidden mb-6 rounded-2xl border border-royal/10 bg-ivory/60 p-4 shadow-soft">
+      {/* Mobile Collapsible Pill Bar */}
+      <div className="lg:hidden mb-8 border-b border-royal/10 pb-4">
         <button
           type="button"
           onClick={() => setIsMobileOpen((prev) => !prev)}
-          className="flex w-full items-center justify-between text-left font-display text-sm font-bold text-royal"
+          className="flex w-full items-center justify-between py-2 text-left font-display text-sm font-bold text-royal"
         >
           <span className="flex items-center gap-2">
             <ListOrdered className="h-4 w-4 text-saffron" />
@@ -68,7 +67,7 @@ export function BlogTableOfContents({ sections = [] }) {
         </button>
 
         {isMobileOpen && (
-          <nav className="mt-3 space-y-1 pt-3 border-t border-royal/10">
+          <nav className="mt-3 space-y-1 pt-2">
             {sections.map((section, idx) => {
               const isActive = activeId === section.id;
               return (
@@ -76,13 +75,15 @@ export function BlogTableOfContents({ sections = [] }) {
                   key={section.id}
                   href={`#${section.id}`}
                   onClick={(e) => handleScrollTo(e, section.id)}
-                  className={`block py-1.5 px-2.5 rounded-lg text-xs font-medium transition-colors ${
+                  className={`block py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-saffron/15 text-saffron-deep font-semibold"
                       : "text-foreground/75 hover:bg-paper hover:text-royal"
                   }`}
                 >
-                  <span className="text-royal/40 mr-1.5">{idx + 1}.</span>
+                  <span className="text-royal/40 mr-2 font-mono text-xs">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                   {section.heading}
                 </a>
               );
@@ -91,14 +92,13 @@ export function BlogTableOfContents({ sections = [] }) {
         )}
       </div>
 
-      {/* Desktop Sticky Table of Contents */}
-      <div className="hidden lg:block sticky top-24 rounded-3xl border border-royal/10 bg-paper p-6 shadow-card">
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-royal pb-3 border-b border-royal/10">
-          <ListOrdered className="h-4 w-4 text-saffron" />
-          Table of Contents
+      {/* Desktop Minimalist Sticky Contents Navigator */}
+      <div className="hidden lg:block sticky top-28 space-y-4">
+        <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-royal/60 pb-3 border-b border-royal/10 font-display">
+          TABLE OF CONTENTS
         </div>
 
-        <nav className="mt-4 space-y-1.5 max-h-[calc(100vh-14rem)] overflow-y-auto pr-1">
+        <nav className="space-y-1.5 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2">
           {sections.map((section, idx) => {
             const isActive = activeId === section.id;
             return (
@@ -106,37 +106,37 @@ export function BlogTableOfContents({ sections = [] }) {
                 key={section.id}
                 href={`#${section.id}`}
                 onClick={(e) => handleScrollTo(e, section.id)}
-                className={`group flex items-start gap-2.5 rounded-xl px-3 py-2 text-xs transition-all ${
+                className={`group flex items-start gap-2.5 py-2 px-2.5 rounded-lg text-xs sm:text-[13px] transition-all leading-snug ${
                   isActive
-                    ? "bg-saffron/10 text-saffron-deep font-bold border-l-3 border-saffron"
-                    : "text-foreground/70 hover:bg-ivory hover:text-royal"
+                    ? "font-bold text-saffron-deep bg-saffron/10 border-l-2 border-saffron"
+                    : "text-foreground/60 hover:text-royal hover:bg-ivory/50"
                 }`}
               >
                 <span
-                  className={`mt-0.5 text-[11px] font-mono ${
-                    isActive ? "text-saffron" : "text-royal/35 group-hover:text-royal"
+                  className={`font-mono text-[11px] shrink-0 ${
+                    isActive ? "text-saffron-deep font-bold" : "text-royal/35 group-hover:text-royal"
                   }`}
                 >
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <span className="leading-snug">{section.heading}</span>
+                <span className="line-clamp-2">{section.heading}</span>
               </a>
             );
           })}
         </nav>
 
-        {/* Quick Travel Note */}
-        <div className="mt-6 pt-4 border-t border-royal/10 bg-ivory/50 -mx-6 -mb-6 p-4 rounded-b-3xl">
-          <p className="hand text-lg text-royal/80 leading-snug">
-            Need local advice? Our guides are here to help anytime.
+        {/* Minimalist Question Prompt */}
+        <div className="pt-6 border-t border-royal/10">
+          <p className="text-xs text-foreground/65 font-sans leading-relaxed">
+            Planning a trip to this destination?
           </p>
           <a
-            href="https://wa.me/919876543210?text=Hello%20KranbsTour%20Team"
+            href="https://wa.me/919876543210?text=Hello%20KranbsTour%20team,%20I%20have%20questions%20about%20a%20tour"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-saffron-deep hover:underline"
+            className="mt-1.5 inline-block text-xs font-bold text-saffron-deep hover:underline font-display"
           >
-            Chat with a Trip Specialist →
+            Ask a Local Specialist →
           </a>
         </div>
       </div>

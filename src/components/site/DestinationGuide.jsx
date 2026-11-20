@@ -119,7 +119,7 @@ export function DestinationGuide({ guide, isGoldenTriangle = false }) {
               </h3>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-3">
               {guide.attractions.map((att) => (
                 <div
                   key={att.name}
