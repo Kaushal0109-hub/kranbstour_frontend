@@ -4,7 +4,7 @@ import { authors } from "@/data/blog";
 
 export function BlogCard({ article }) {
   const author = authors[article.authorId] || {
-    name: "KranbsTour Team",
+    name: "KranbsTour Teams",
     avatar: "/avatars/avatar-1.jpg",
   };
 
